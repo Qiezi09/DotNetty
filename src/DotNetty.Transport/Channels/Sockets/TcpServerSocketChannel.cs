@@ -88,6 +88,7 @@ namespace DotNetty.Transport.Channels.Sockets
             {
                 try
                 {
+                    Console.WriteLine("等待新连接...");
                     bool pending = this.Socket.AcceptAsync(operation);
                     if (!pending)
                     {
@@ -183,6 +184,7 @@ namespace DotNetty.Transport.Channels.Sockets
                         operation.AcceptSocket = null;
                         operation.Validate();
 
+                        Console.WriteLine($"准备新连接通道...");
                         var message = this.PrepareChannel(connectedSocket);
                         
                         connectedSocket = null;

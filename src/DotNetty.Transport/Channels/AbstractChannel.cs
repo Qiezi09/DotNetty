@@ -374,6 +374,7 @@ namespace DotNetty.Transport.Channels
                     {
                         if (firstRegistration)
                         {
+
                             this.channel.pipeline.FireChannelActive();
                         }
                         else if (this.channel.Configuration.AutoRead)

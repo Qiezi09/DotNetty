@@ -274,6 +274,7 @@ namespace DotNetty.Transport.Bootstrapping
 
             try
             {
+                //this.Group() 为BossGroup
                 await this.Group().GetNext().RegisterAsync(channel);
             }
             catch (Exception)

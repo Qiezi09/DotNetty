@@ -143,6 +143,7 @@ namespace DotNetty.Transport.Bootstrapping
             ChannelOptionValue[] currentChildOptions = this.childOptions.Values.ToArray();
             AttributeValue[] currentChildAttrs = this.childAttrs.Values.ToArray();
 
+
             p.AddLast(new ActionChannelInitializer<IChannel>(ch =>
             {
                 ch.Pipeline.AddLast(new ServerBootstrapAcceptor(currentChildGroup, currentChildHandler,
@@ -198,6 +199,7 @@ namespace DotNetty.Transport.Bootstrapping
                 // todo: async/await instead?
                 try
                 {
+                    Console.WriteLine("将新连接注册到工作线程...");
                     this.childGroup.RegisterAsync(child).ContinueWith(
                         (future, state) => ForceClose((IChannel)state, future.Exception),
                         child,

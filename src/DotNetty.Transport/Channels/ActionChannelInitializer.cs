@@ -14,12 +14,17 @@ namespace DotNetty.Transport.Channels
 
         public ActionChannelInitializer(Action<T> initializationAction)
         {
+
             Contract.Requires(initializationAction != null);
 
             this.initializationAction = initializationAction;
         }
 
-        protected override void InitChannel(T channel) => this.initializationAction(channel);
+        protected override void InitChannel(T channel)
+        {
+            Console.WriteLine($"初始化通道[{channel.Id.ToString()}],{channel.GetType().FullName}");
+            this.initializationAction(channel);
+        }
 
         public override string ToString() => nameof(ActionChannelInitializer<T>) + "[" + StringUtil.SimpleClassName(typeof(T)) + "]";
     }

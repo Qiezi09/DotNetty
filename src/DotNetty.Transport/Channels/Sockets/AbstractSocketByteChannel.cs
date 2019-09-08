@@ -155,6 +155,7 @@ namespace DotNetty.Transport.Channels.Sockets
             SocketChannelAsyncOperation operation = this.ReadOperation;
             bool pending;
 #if NETSTANDARD1_3
+            Console.WriteLine("准备接收新消息...");
             pending = this.Socket.ReceiveAsync(operation);
 #else
             if (ExecutionContext.IsFlowSuppressed())
