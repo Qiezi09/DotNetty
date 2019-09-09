@@ -25,6 +25,7 @@ namespace WebSockets.Server
 
         protected override void ChannelRead0(IChannelHandlerContext ctx, object msg)
         {
+            Console.WriteLine($"业务处理器处理消息[{this.GetType().FullName}]");
             if (msg is IFullHttpRequest request)
             {
                 this.HandleHttpRequest(ctx, request);
@@ -104,7 +105,8 @@ namespace WebSockets.Server
             if (frame is TextWebSocketFrame)
             {
                 // Echo the frame
-                ctx.WriteAsync(frame.Retain());
+                Console.WriteLine($"{frame.Content.ToString(Encoding.UTF8)}");
+                //ctx.WriteAsync(frame.Retain());
                 return;
             }
 

@@ -367,6 +367,8 @@ namespace DotNetty.Transport.Channels
                     this.channel.registered = true;
 
                     Util.SafeSetSuccess(promise, Logger);
+
+                    // 管道处理器注册
                     this.channel.pipeline.FireChannelRegistered();
                     // Only fire a channelActive if the channel has never been registered. This prevents firing
                     // multiple channel actives if the channel is deregistered and re-registered.
@@ -374,7 +376,7 @@ namespace DotNetty.Transport.Channels
                     {
                         if (firstRegistration)
                         {
-
+                            // 处理器激活
                             this.channel.pipeline.FireChannelActive();
                         }
                         else if (this.channel.Configuration.AutoRead)

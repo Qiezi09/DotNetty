@@ -1114,6 +1114,7 @@ namespace DotNetty.Transport.Channels
                     this.firstRegistration = false;
                     // We are now registered to the EventLoop. It's time to call the callbacks for the ChannelHandlers,
                     // that were added before the registration was done.
+                    // 回调自定义管道处理器，对新连接进行处理
                     this.pipeline.CallHandlerAddedForAllHandlers();
                 }
 

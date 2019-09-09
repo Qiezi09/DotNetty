@@ -274,7 +274,7 @@ namespace DotNetty.Transport.Bootstrapping
 
             try
             {
-                //this.Group() 为BossGroup
+                //把新通道注册到EventLoop
                 await this.Group().GetNext().RegisterAsync(channel);
             }
             catch (Exception)

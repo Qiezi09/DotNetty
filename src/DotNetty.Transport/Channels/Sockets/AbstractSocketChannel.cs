@@ -169,10 +169,17 @@ namespace DotNetty.Transport.Channels.Sockets
         /// <remarks>PORT NOTE: matches behavior of NioEventLoop.processSelectedKey</remarks>
         static void OnIoCompleted(object sender, SocketAsyncEventArgs args)
         {
-            Console.WriteLine($"新的IO消息({args.LastOperation.ToString()})...");
             var operation = (SocketChannelAsyncOperation)args;
             AbstractSocketChannel channel = operation.Channel;
             var @unsafe = (ISocketChannelUnsafe)channel.Unsafe;
+
+
+            Console.WriteLine($"=========================================================");
+            Console.WriteLine($"======                                             ======");
+            Console.WriteLine($"新的IO消息({args.LastOperation.ToString()}),{@unsafe.GetType().FullName}");
+            Console.WriteLine($"======                                             ======");
+            Console.WriteLine($"=========================================================");
+
             IEventLoop eventLoop = channel.EventLoop;
             switch (args.LastOperation)
             {

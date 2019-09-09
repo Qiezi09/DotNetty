@@ -100,6 +100,7 @@ namespace DotNetty.Transport.Channels.Sockets
                 {
                     operation.Validate();
 
+                    Console.WriteLine($"新消息粘包处理，{this.GetType().FullName}");
                     do
                     {
                         byteBuf = allocHandle.Allocate(allocator);

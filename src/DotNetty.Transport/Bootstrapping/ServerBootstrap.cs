@@ -132,18 +132,24 @@ namespace DotNetty.Transport.Bootstrapping
             }
 
             IChannelPipeline p = channel.Pipeline;
+            
+            //用户自定义管道处理器，要对新连接进行的处理
             IChannelHandler channelHandler = this.Handler();
             if (channelHandler != null)
             {
                 p.AddLast((string)null, channelHandler);
             }
 
+            //Worker线程组
             IEventLoopGroup currentChildGroup = this.childGroup;
+
+            //用户自定义管道处理器，要对接收的消息进行的处理
             IChannelHandler currentChildHandler = this.childHandler;
             ChannelOptionValue[] currentChildOptions = this.childOptions.Values.ToArray();
             AttributeValue[] currentChildAttrs = this.childAttrs.Values.ToArray();
 
-
+            //添加一个管道处理器，每当有新连接进来就通过ServerBootstrapAcceptor把新连接注册到Worker
+            //第一次注册会以回调形式添加到管道上，
             p.AddLast(new ActionChannelInitializer<IChannel>(ch =>
             {
                 ch.Pipeline.AddLast(new ServerBootstrapAcceptor(currentChildGroup, currentChildHandler,

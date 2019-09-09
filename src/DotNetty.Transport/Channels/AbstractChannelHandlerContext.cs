@@ -270,7 +270,7 @@ namespace DotNetty.Transport.Channels
             {
                 try
                 {
-                    Console.WriteLine($"节点注册[{nameof(this.Handler.ChannelRegistered)}],{this.Handler.GetType().FullName}");
+                    Console.WriteLine($"处理器注册[{nameof(this.Handler.ChannelRegistered)}],{this.Handler.GetType().FullName}");
                     this.Handler.ChannelRegistered(this);
                 }
                 catch (Exception ex)
@@ -347,7 +347,7 @@ namespace DotNetty.Transport.Channels
             {
                 try
                 {
-                    Console.WriteLine($"节点激活[{nameof(this.Handler.ChannelActive)}],{this.Handler.GetType().FullName}");
+                    Console.WriteLine($"处理器激活[{nameof(this.Handler.ChannelActive)}],{this.Handler.GetType().FullName}");
                     (this.Handler).ChannelActive(this);
                 }
                 catch (Exception ex)
@@ -523,7 +523,7 @@ namespace DotNetty.Transport.Channels
             {
                 try
                 {
-                    Console.WriteLine($"节点对新连接处理[{nameof(this.Handler.ChannelRead)}],{this.Handler.GetType().FullName}");
+                    Console.WriteLine($"处理器读取消息[{nameof(this.Handler.ChannelRead)}],{this.Handler.GetType().FullName}");
                     this.Handler.ChannelRead(this, msg);
                 }
                 catch (Exception ex)
@@ -562,6 +562,7 @@ namespace DotNetty.Transport.Channels
             {
                 try
                 {
+                    Console.WriteLine($"读取完成[{nameof(this.Handler.ChannelReadComplete)}]，{this.Handler.GetType().FullName}");
                     (this.Handler).ChannelReadComplete(this);
                 }
                 catch (Exception ex)
@@ -783,7 +784,7 @@ namespace DotNetty.Transport.Channels
             {
                 try
                 {
-                    Console.WriteLine($"节点读取[{nameof(this.Handler.Read)}],{this.Handler.GetType().FullName}");
+                    Console.WriteLine($"处理器读取[{nameof(this.Handler.Read)}],{this.Handler.GetType().FullName}");
                     this.Handler.Read(this);
                 }
                 catch (Exception ex)
